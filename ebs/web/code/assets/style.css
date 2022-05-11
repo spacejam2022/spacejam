@@ -1,0 +1,329 @@
+body {
+    background: url("watermerk.png") no-repeat center,
+                url("tileable_backgrlines.png") repeat;
+    color: white;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-size: 9pt;
+    letter-spacing: 1pt;
+    line-height: 14pt;
+    min-height: 500px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+ul {
+    margin: 0 -24px;
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    padding: .20px 24px;
+    font-size: 80%;
+    font-weight: bold;
+}
+
+li > div {
+    border-bottom: 1px solid #fff8;
+}
+
+li a:hover:after {
+    content: url("pointer.png");
+    transform: scaleX(-1);
+    display: inline-block;
+    padding-right: 12px;
+}
+
+li.selected {
+    background: red;
+}
+
+li.selected > div {
+    border-bottom: none;
+}
+
+#header {
+    background: url("logo_arrow.png") no-repeat left center;
+    background-image: url("logo_arrow.svg");
+    padding: 20px 0 20px 60px;
+    margin: 0 auto;
+    max-width: 740px;
+    font-weight: bold;
+    display: grid;
+}
+
+#main {
+    margin: 30px auto;
+    max-width: 800px;
+}
+
+@media (min-width: 499px) and (max-width: 900px) {
+    #header {
+        margin: 0 50px;
+    }
+    #main {
+        margin: 30px 50px;
+    }
+}
+
+@media (min-width: 411px) and (max-width: 498px) {
+    #header {
+        width: 338px; /* we have 60px padding */
+        margin: 0 auto;
+    }
+    #main {
+        width: 398px;
+        margin: 30px auto;
+    }
+}
+
+@media (max-width: 410px) {
+    #header {
+        margin: 0 6px;
+    }
+    #main {
+        margin: 30px 6px;
+    }
+}
+
+@media (max-height: 500px) {
+    #footer {
+        display: none;
+    }
+}
+
+#header > div {
+    grid-column: 1;
+}
+
+div.row-top {
+    grid-row: 1/3;
+}
+
+div.row-middle {
+    grid-row: 2/4;
+}
+
+div.row-bottom {
+    grid-row: 3/5;
+}
+
+#header > :first-child {
+    color: red;
+}
+
+#header > div.logout-button {
+    grid-column: 2;
+    text-align: right;
+}
+
+img {
+    margin: 0 .5em;
+}
+
+img.flip {
+    transform: scaleX(-1);
+}
+
+div.separator {
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #f008;
+    border-bottom: 1px solid #f008;
+}
+
+#footer {
+    position: absolute;
+    bottom: 80px;
+    left: -20px;
+    width: 10000%;
+    padding: 10px;
+    background-color: #f008;
+    color: red;
+    z-index: -1;
+}
+
+div.login-box {
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+div.with-border {
+    background: url("corner_1.png") no-repeat top left,
+                url("corner_3.png") no-repeat top right,
+                url("corner_2.png") no-repeat bottom right,
+                url("corner_4.png") no-repeat bottom left;
+    background-image: url("corner_1.svg"), url("corner_3.svg"), url("corner_2.svg"), url("corner_4.svg");
+    padding: 30px;
+    min-width: 160px;
+    min-height: 200px;
+}
+
+div.with-border.no-padding {
+    padding: 0;
+    min-width: 220px;
+    display: flex;
+    align-items: stretch;
+}
+
+div.red-background {
+    background: linear-gradient(135deg, transparent 12px, #f008 1px), linear-gradient(-135deg, transparent 16px, #f008 1px), linear-gradient(45deg, transparent 16px, #f008 1px), linear-gradient(-45deg, transparent 12px, #f008 1px);
+    background-position: top left, top right, bottom left, bottom right;
+    background-size: 50% 50%, 50% 50%, 50% 50%, 50% 50%;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    margin: 6px;
+    padding: 24px;
+    width: 100%;
+}
+
+body.chrome div.red-background {
+    /* Should be Chrome only */
+    background-size: 50.01% 50.01%, 50.01% 50.01%, 50.01% 50.01%, 50.01% 50.01%;
+}
+
+h1 {
+    text-align: center;
+}
+
+h1, h2 {
+    margin-top: 0;
+}
+
+div.transparent {
+    color: #fff8;
+}
+
+div.red {
+    color: red;
+}
+
+div.center {
+    width: 100%;
+    text-align: center;
+}
+
+div.bold {
+    font-weight: bold;
+}
+
+div.margin {
+    margin: 20px;
+}
+
+div.input-field {
+    margin-top: 20px;
+}
+
+div.input-field > label {
+    font-weight: bold;
+}
+
+input, button {
+    background: transparent;
+    border: 1px solid #fff8;
+    color: #fff8;
+    outline: none;
+    width: 100%;
+    padding: 6px;
+}
+
+input:hover {
+    background: #fff3;
+    border: 1px solid white;
+    color: #fff8;
+}
+
+input:focus {
+    background: white;
+    color: black;
+}
+
+div.login-button {
+    margin: 30px;
+}
+
+div.login-button button {
+    background: red;
+    color: white;
+    font-weight: bold;
+    border: none;
+    box-shadow: 5px 5px 10px black;
+    font-size: 100%;
+    font-style: italic;
+}
+
+div.login-button button:hover {
+    background: #b00;
+    border: none;
+    color: white;
+}
+
+div#index-box {
+    display: flex;
+}
+
+div#briefings {
+    flex: 1;
+    margin-right: 10px;
+}
+
+@media (max-width: 620px) {
+    div#index-box {
+        display: inherit;
+    }
+
+    div#briefings {
+        margin-right: inherit;
+        margin-bottom: 10px;
+    }
+
+    #header > div.logout-button {
+        grid-column: 1;
+        text-align: inherit;
+        grid-row: 5/7;
+    }
+}
+
+@media (min-width: 621px) and (min-height: 416px) {
+    div#index-box {
+        height: 60%;
+    }
+}
+
+div#briefings > div {
+    overflow-y: hidden;
+}
+
+div#selected-briefing {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+div#briefing-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+div#briefing-content > div {
+    text-align: center;
+}
+
+div.content-header {
+    font-weight: bold;
+}
+
+div.content-message {
+    margin: 10px;
+    color: #fff8;
+    word-break: break-word;
+}

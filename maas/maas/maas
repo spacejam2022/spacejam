@@ -1,0 +1,17 @@
+#!/bin/bash
+
+echo -n "Enter manpage: "
+read PAGE
+if echo $PAGE | grep "^token$" >/dev/null
+then
+    echo -n "Manpage is password protected! Enter password: "
+    read PASSWORD
+
+    if ! cat /data/password | grep $PASSWORD >/dev/null
+    then
+        echo "Invalid password!"
+        sleep 1
+        exit 1
+    fi
+fi
+PAGER=cat man -M $(manpath):/data/maas $PAGE

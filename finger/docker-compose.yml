@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+
+  finger:
+    image: finger
+    ports:
+      - "79:1079"
+    volumes:
+      - /cs/data/finger:/data:ro
+      - /cs/data/finger/home:/home:ro
+      - /cs/data/finger/etc/passwd:/etc/passwd:ro
+      - /cs/data/finger/etc/group:/etc/group:ro
+      - /cs/data/finger/etc/shadow:/etc/shadow:ro
+    user: nobody
+    deploy:
+      restart_policy: {}
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128M 

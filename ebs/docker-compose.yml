@@ -1,0 +1,57 @@
+version: "3.7"
+
+services:
+
+  web:
+    image: ebs-web
+    ports:
+      - "8000:80"
+    volumes:
+      - /cs/data/ebs/ebs:/data:ro
+    deploy:
+      restart_policy: {}
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 256M 
+
+  php:
+    image: ebs-php
+    ports:
+      - "9000:9000"
+    volumes:
+      - /cs/data/ebs/ebs:/data:ro
+    deploy:
+      restart_policy: {}
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 512M
+
+  mysql:
+    image: ebs-mysql
+    ports:
+      - "3307:3306"
+    volumes:
+      - /cs/data/ebs/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/mysql-root
+    secrets:
+      - mysql-root
+    deploy:
+      restart_policy: {}
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 512M 
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      start_period: 300s
+      timeout: 20s
+      interval: 20s
+      retries: 10
+
+
+secrets:
+    mysql-root:
+        file: ./mysql-root

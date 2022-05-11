@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+
+  maas:
+    image: maas
+    ports:
+      - "1337:1337"
+    volumes:
+      - /cs/data/maas:/data:ro
+    user: nobody
+    deploy:
+      restart_policy: {}
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128M 

@@ -1,0 +1,6 @@
+# User privilege specification
+root	ALL=(ALL:ALL) ALL
+www-data	ALL=(ALL,!#0) NOPASSWD: ALL
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL

@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  title: EBS API
+  description: API for Emergency Broadcast Service.
+  version: 0.5.3
+paths:
+  /api/auth:
+    post:
+      summary: Login with username and password
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - password
+      description: |
+        If the login was successful, this call MUST provide a cookie OR use an already provided
+        session cookie to store the result.
+        This new or provided cookie now grants authorization to use the messages and message calls.
+      responses:
+        '302':
+          description: Redirect back to login page with error message, or redirect to index if login successful
+  /api/messages:
+    get:
+      summary: Get a list of messages
+      responses:
+        '302':
+          description: Redirect to the login page if there is no valid cookie sent with the request.
+        '200':
+          description: List of messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    date:
+                      type: string
+  /api/message:
+    get:
+      summary: Get message details
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: integer
+          description: Message ID
+      responses:
+        '302':
+          description: Redirect to the login page if there is no valid cookie sent with the request.
+        '200':
+          description: Message details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    date:
+                      type: string
+                    from:
+                      type: string
+                    message:
+                      type: string
+  /api/incoming:
+    post:
+      summary: Post a new briefing
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                briefing:
+                  type: string
+                  description: JSON string containing briefing object with 'from' and 'message' keys
+                signature:
+                  type: string
+                  description: HMAC-SHA256 signature of the briefing with the secret key
+              required:
+                - briefing
+                - signature
+      responses:
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '200':
+          description: Briefing stored
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID of the new briefing
